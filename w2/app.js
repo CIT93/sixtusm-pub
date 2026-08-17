@@ -3,8 +3,8 @@ console.log("Hello from app.js! Your JavaScript is connected and running!");
 // We use document.getElementById() to get a reference to an element by its unique ID.
 // We store these references in 'const' variables because the elements themselves won't change.
 
-const messageDisplayElement = document.getElementById("output-message");
-const updateButton = document.getElementById("update-button");
+const totalDisplayElement = document.getElementById("total-display");
+const addItemButton = document.getElementById("add-item-btn");
 
 // These variables will change as the user interacts with the page.
 let userName = "Sixtus";
@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Attach an event listener to our 'updateButton.
     // When 'updateButton' receives a 'click' event, the 'handleButtonClick' function will execute.
-    updateButton.addEventListener('click', handleButtonClick);
-    messageDisplayElement.textContent = `Welcome, ${userName}! Click the button below to start counting`;
+    addItemButton.addEventListener('click', handleButtonClick);
+    totalDisplayElement.textContent = `Welcome, ${userName}! Click the button below to start counting`;
 });
 
 // Prompt Notes:
