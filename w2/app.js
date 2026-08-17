@@ -34,7 +34,7 @@ if (totalCost >= 60) {
     message += ' (Over Budget!)';
     totalDisplayElement.style.color = 'red';
 } else {
-   totalDisplayElement.style.color = '#333';
+   totalDisplayElement.style.color = '#07f155';
 }
 
 // Prompt Notes:
