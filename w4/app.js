@@ -1,4 +1,8 @@
 import * as orderForm from "./order-handler.js";
+import * as priceCalculator from './price-calculator.js';
+
+// Stores all orders placed during the current session.
+const orders = [];
 
 // Reference to the order form.
 const orderFormElement = document.getElementById('order-form');
@@ -11,11 +15,26 @@ const handleOrderSubmit = function(event) {
     // Prevents the form from reloading the page.
     event.preventDefault();
 
-    // Gets the order data object from order-handler.js.
-    const orderData = orderForm.getOrderInputs();
+// Gets the order data object from order-handler.js.
+const orderData = orderForm.getOrderInputs();
+// Calculates the price using the price calculator module.
+const calculatedPrice = priceCalculator.calculateTotal(orderData);
 
-    console.log(orderData);
-    // Creates the order summary message.
+// Combines the order data and calculated price into one new order object.
+const newOrder = {
+    ...orderData,
+    ...calculatedPrice,
+    timestamp: new Date().toISOString()
+};
+
+    // console.log(orderData);
+
+// Adds the new order to the orders array.
+orders.push(newOrder);
+
+// Displays the full orders array in the console.
+console.log(orders);
+// Creates the order summary message.
 let message = `Ordered ${orderData.qty} ${orderData.size} T-Shirts`;
 
 // Only displays gift wrapped if the user selected Gift Wrap.
