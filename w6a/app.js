@@ -30,6 +30,9 @@ const handleOrderSubmit = function(event) {
     // Adds the new order to the orders array.
     orders.push(newOrder);
 
+    // Saves the updated orders array to localStorage.
+    orderStorage.saveOrders(orders);
+
     // Displays the current order results on the page.
     resultsDisplay.displayOrder(newOrder);
 };
