@@ -29,9 +29,6 @@ const handleOrderSubmit = function(event) {
     // Adds the new order to the orders array.
     orders.push(newOrder);
 
-    // Displays the full orders array in the console.
-    console.log(orders);
-
     // Displays the current order results on the page.
     resultsDisplay.displayOrder(newOrder);
 };
