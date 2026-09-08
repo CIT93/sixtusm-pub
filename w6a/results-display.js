@@ -10,7 +10,7 @@ const displaySize = orderSummary.querySelector('#display-size');
 const displayGift = orderSummary.querySelector('#display-gift');
 
 // Displays the order results on the page.
-export const displayResults = function(order) {
+export const displayOrder = function(order) {
 
     // Update the text content with the order information.
     displayTotal.textContent = order.totalPrice;

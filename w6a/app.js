@@ -8,9 +8,6 @@ const orders = [];
 // Reference to the order form.
 const orderFormElement = document.getElementById('order-form');
 
-// Reference to the order summary div.
-const orderSummary = document.getElementById('order-summary');
-
 // Handles the order form submission.
 const handleOrderSubmit = function(event) {
     // Prevents the form from reloading the page.
@@ -29,8 +26,6 @@ const handleOrderSubmit = function(event) {
         timestamp: new Date().toISOString()
     };
 
-    // console.log(orderData);
-
     // Adds the new order to the orders array.
     orders.push(newOrder);
 
@@ -38,20 +33,7 @@ const handleOrderSubmit = function(event) {
     console.log(orders);
 
     // Displays the current order results on the page.
-    resultsDisplay.displayResults(newOrder);
-
-    // Old Week 3 display code commented out for Step 4.
-
-    // Creates the order summary message.
-    // let message = `Ordered ${orderData.qty} ${orderData.size} T-Shirts`;
-
-    // Only displays gift wrapped if the user selected Gift Wrap.
-    // if (orderData.giftWrap) {
-    //     message += ' - gift wrapped';
-    // }
-
-    // Displays the order details on the page.
-    // orderSummary.textContent = message;
+    resultsDisplay.displayOrder(newOrder);
 };
 
 // Initializes the app and attaches the submit event listener.
