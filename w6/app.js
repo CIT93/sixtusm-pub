@@ -1,7 +1,7 @@
 import * as orderForm from "./order-handler.js";
 import * as priceCalculator from './price-calculator.js';
-import * as resultsDisplay from './results-display.js';
 import * as orderStorage from './order-storage.js';
+import * as orderList from './order-list.js';
 
 // Stores all orders placed during the current session.
 const orders = [];
@@ -33,8 +33,8 @@ const handleOrderSubmit = function(event) {
     // Saves the updated orders array to localStorage.
     orderStorage.saveOrders(orders);
 
-    // Displays the current order results on the page.
-    resultsDisplay.displayOrder(newOrder);
+    // Render the full list.
+    orderList.renderOrders(orders);
 };
 
 // Initializes the app and attaches the submit event listener.
@@ -44,10 +44,11 @@ const init = function() {
     // Loads saved orders from localStorage.
     const loadedOrders = orderStorage.loadOrders();
 
-    // Adds saved orders to the orders array.
     if (loadedOrders.length > 0) {
         orders.push(...loadedOrders);
-        console.log('Orders loaded');
+
+        // Render the full list instead of just the last one.
+        orderList.renderOrders(orders);
     }
 
     orderFormElement.addEventListener('submit', handleOrderSubmit);
