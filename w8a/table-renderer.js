@@ -171,7 +171,7 @@ const createTableRow = function(entry) {
     // Set the inner HTML of the row using a template literal.
     row.innerHTML = `
         <td>${formatDateForDisplay(entry.timestamp)}</td>
-        <td>${entry.householdMembers}</td>
+        <td>${entry.householdMembers}</td>`
         <td>${formatHomeSizeDisplay(entry.homeSquareFootage, entry.isApartment)}</td>
         <td>${formatRadioValue(entry.dietType)}</td>
         <td>${formatRadioValue(entry.foodPackaging)}</td>
