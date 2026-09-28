@@ -70,7 +70,7 @@ const handleFormSubmit = function(event) {
     event.preventDefault();
 
     const formData = formHandler.getFormInputs();
-    const calculatedResults = calculator.calculateFootprint(formInputs);
+    const calculatedResults = calculator.calculateFootprint(formData);
 
     const newEntry = {
         ...formData,
