@@ -35,7 +35,7 @@ const calculateFoodDietPoints = function(dietType) {
     switch (dietType) {
         case 'meatHeavy': return 10;
         case 'average': return 8;
-        case 'vegetarian': return 4;
+        case 'vegetarian': return 10;
         case 'vegan': return 2;
         default: return 0;
     }
