@@ -10,7 +10,7 @@ const orders = [];
 const orderFormElement = document.getElementById('order-form');
 
 // Handles the order form submission.
-const handleOrderSubmit = function(event) {
+const handleOrderSubmit = function (event) {
     // Prevents the form from reloading the page.
     event.preventDefault();
 
@@ -22,6 +22,7 @@ const handleOrderSubmit = function(event) {
 
     // Combines the order data and calculated price into one new order object.
     const newOrder = {
+        id: Date.now().toString(),
         ...orderData,
         ...calculatedPrice,
         timestamp: new Date().toISOString()
@@ -38,7 +39,7 @@ const handleOrderSubmit = function(event) {
 };
 
 // Initializes the app and attaches the submit event listener.
-const init = function() {
+const init = function () {
     console.log('App Initialized');
 
     // Loads saved orders from localStorage.
