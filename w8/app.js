@@ -35,7 +35,18 @@ const handleOrderSubmit = function (event) {
     orderStorage.saveOrders(orders);
 
     // Render the full list.
-    orderList.renderOrders(orders);
+    orderList.renderOrders(orders, {
+        onDelete: handleDelete,
+        onEdit: handleEdit
+    });
+};
+
+const handleDelete = function (id) {
+    console.log("App.js: Requesting delete for order", id);
+};
+
+const handleEdit = function (id) {
+    console.log("App.js: Requesting edit for order", id);
 };
 
 // Initializes the app and attaches the submit event listener.
@@ -49,7 +60,10 @@ const init = function () {
         orders.push(...loadedOrders);
 
         // Render the full list instead of just the last one.
-        orderList.renderOrders(orders);
+        orderList.renderOrders(orders, {
+            onDelete: handleDelete,
+            onEdit: handleEdit
+        });
     }
 
     orderFormElement.addEventListener('submit', handleOrderSubmit);

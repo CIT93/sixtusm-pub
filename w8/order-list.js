@@ -1,11 +1,13 @@
+let moduleCallbacks = {};
+
 // Get a reference to the table body.
 const orderTableBody = document.getElementById('order-table-body');
 
 const tableBody = document.getElementById('order-table-body');
 
-tableBody.addEventListener('click', function(event) {
+tableBody.addEventListener('click', function (event) {
     const target = event.target;
-    
+
     // 1. Get the ID from the button that was clicked
     const id = target.dataset.id;
 
@@ -13,12 +15,19 @@ tableBody.addEventListener('click', function(event) {
     // there will be no ID. So we stop the function immediately.
     if (!id) return;
 
-    // 3. Temporary Test: Log the ID to prove it works!
-    console.log("Clicked button with ID:", id); 
+    if (target.classList.contains('delete-btn') && moduleCallbacks.onDelete) {
+        moduleCallbacks.onDelete(id);
+    }
+
+    if (target.classList.contains('edit-btn') && moduleCallbacks.onEdit) {
+        moduleCallbacks.onEdit(id);
+    }
 });
 
 // Render all saved orders in the table.
-export const renderOrders = function (orders) {
+export const renderOrders = function (orders, callbacks) {
+    // Save the callbacks for later
+    moduleCallbacks = callbacks;
 
     // Clear the table before rendering to prevent duplicates.
     orderTableBody.innerHTML = '';
