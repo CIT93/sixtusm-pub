@@ -2,7 +2,7 @@
 const orderTableBody = document.getElementById('order-table-body');
 
 // Render all saved orders in the table.
-export const renderOrders = function(orders) {
+export const renderOrders = function (orders) {
 
     // Clear the table before rendering to prevent duplicates.
     orderTableBody.innerHTML = '';
@@ -19,7 +19,10 @@ export const renderOrders = function(orders) {
             <td>${order.qty}</td>
             <td>${order.size}</td>
             <td>$${order.totalPrice}</td>
-            <td></td>
+            <td>
+                <button class="edit-btn" data-id="${order.id}">Edit</button>
+                <button class="delete-btn" data-id="${order.id}">Delete</button>
+            </td>
         `;
 
         // Add the row to the table.
