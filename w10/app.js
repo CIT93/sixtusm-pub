@@ -61,7 +61,22 @@ const handleDelete = function (id) {
 };
 
 const handleEdit = function (id) {
-    console.log("App.js: Requesting edit for order", id);
+    // Find the order that matches the selected ID.
+    const order = orders.find(order => order.id === id);
+
+    if (order) {
+        // Populate the quantity input.
+        document.getElementById('qty').value = order.qty;
+
+        // Select the correct size radio button.
+        document.querySelector('input[name="size"][value="' + order.size + '"]').checked = true;
+
+        // Set the gift wrap checkbox.
+        document.getElementById('gift-wrap').checked = order.giftWrap;
+
+        // Store the order ID in the hidden input.
+        document.getElementById('order-id').value = order.id;
+    }
 };
 
 // Initializes the app and attaches the submit event listener.
