@@ -1,3 +1,4 @@
+
 import * as orderForm from "./order-handler.js";
 import * as priceCalculator from './price-calculator.js';
 import * as orderStorage from './order-storage.js';
@@ -20,25 +21,46 @@ const handleOrderSubmit = function (event) {
     // Calculates the price using the price calculator module.
     const calculatedPrice = priceCalculator.calculateTotal(orderData);
 
-    // Combines the order data and calculated price into one new order object.
-    const newOrder = {
-        id: Date.now().toString(),
-        ...orderData,
-        ...calculatedPrice,
-        timestamp: new Date().toISOString()
-    };
+    // Gets the hidden ID to check if we are editing an order.
+    const orderId = document.getElementById('order-id').value;
 
-    // Adds the new order to the orders array.
-    orders.push(newOrder);
+    if (orderId) {
+        // Find the existing order.
+        const index = orders.findIndex(order => order.id === orderId);
 
-    // Saves the updated orders array to localStorage.
+        if (index !== -1) {
+            // Update the order while keeping its original ID and timestamp.
+            orders[index] = {
+                ...orders[index],
+                ...orderData,
+                ...calculatedPrice
+            };
+        }
+    } else {
+        // Create a new order.
+        const newOrder = {
+            id: Date.now().toString(),
+            ...orderData,
+            ...calculatedPrice,
+            timestamp: new Date().toISOString()
+        };
+
+        // Add the new order to the orders array.
+        orders.push(newOrder);
+    }
+
+    // Save the updated orders array to localStorage.
     orderStorage.saveOrders(orders);
 
-    // Render the full list.
+    // Re-render the table.
     orderList.renderOrders(orders, {
         onDelete: handleDelete,
         onEdit: handleEdit
     });
+
+    // Clear the hidden ID and reset the form.
+    document.getElementById('order-id').value = '';
+    orderFormElement.reset();
 };
 
 const handleDelete = function (id) {
